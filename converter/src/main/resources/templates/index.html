@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body ng-app="conversionApp" ng-controller="conversionController">
+  <div>
+    <div>
+      <!--Form To Capture Temperature Readings-->
+      <form>
+        <label>Celsius</label>
+        <input type="text" name="celsius" ng-model="celsius">
+        <label>Kelvin</label>
+        <input type="text" name="kelvin" ng-model="kelvin">
+        <button type="submit" name="tempsubmit">Convert</button>
+        <button type="reset" name="tempreset">Reset</button>
+      </form>
+    </div>
+
+    <div>
+      <!--Form To Capture Distance Readings-->
+      <form>
+        <label>Kilometres</label>
+        <input type="text" name="kilometres" ng-model="kilometres">
+        <label>Miles</label>
+        <input type="text" name="miles" ng-model="miles">
+        <button type="submit" name="tempsubmit">Convert</button>
+        <button type="reset" name="tempreset">Reset</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
