@@ -1,13 +1,13 @@
 package com.wonderlabz.converter.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+@Controller
 public class AngularJSWebController {
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @RequestMapping("/")
     public String homePage(){
-        return "index";
+        return "index.html";
     }
 }

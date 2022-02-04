@@ -3,10 +3,8 @@ package com.wonderlabz.converter.controller;
 import com.wonderlabz.converter.model.Conversion;
 import com.wonderlabz.converter.repository.ConversionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class ConverterController {
     private ConversionRepository conversionRepository;
 
     @GetMapping("/ctok")
-    public String ctok(@RequestParam String celsius){
+    /*public String ctok(@RequestParam String celsius){
         double c = (Double.valueOf(celsius)).doubleValue();
         double k = c + 273.15;
         String kelvin = String.valueOf(k);
@@ -30,6 +28,18 @@ public class ConverterController {
         cnv.setOutputValue(k);
         conversionRepository.save(cnv);
         return kelvin;
+    }*/
+
+    public Double ctok(@RequestParam Double celsius){
+        Double k = celsius + 273.15;
+        Conversion cnv = new Conversion();
+        cnv.setConversionType("Celsius To Kelvin");
+        cnv.setInputType("Celsius");
+        cnv.setInputValue(celsius);
+        cnv.setOutputType("Kelvin");
+        cnv.setOutputValue(k);
+        conversionRepository.save(cnv);
+        return k;
     }
 
     @GetMapping("/ktoc")
@@ -76,6 +86,15 @@ public class ConverterController {
         conversionRepository.save(cnv);
         return miles;
     }
+
+    /*public ResponseEntity<Conversion> setConversion(Conversion conversionEntity){
+        Conversion cnv = new Conversion();
+        cnv.setConversionType("Kilometres To Miles");
+        cnv.setInputType("Kilometres");
+        cnv.setInputValue(km);
+        cnv.setOutputType("Miles");
+        cnv.setOutputValue(m);
+    }*/
 
     @GetMapping("/history")
     public List<Conversion> getHistory(){

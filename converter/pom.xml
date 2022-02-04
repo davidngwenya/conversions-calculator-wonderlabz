@@ -12,7 +12,7 @@
 	<artifactId>converter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>converter</name>
-	<description>A wonderlabz conversion calculator for temperature and distance.</description>
+	<description>A Wonderlabz conversion calculator for temperature and distance.</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -46,6 +46,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-netflix-eureka-client</artifactId>
+			<version>3.0.5</version>
+		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
