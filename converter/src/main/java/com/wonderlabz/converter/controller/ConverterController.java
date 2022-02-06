@@ -2,7 +2,9 @@ package com.wonderlabz.converter.controller;
 
 import com.wonderlabz.converter.model.Conversion;
 import com.wonderlabz.converter.repository.ConversionRepository;
+import com.wonderlabz.converter.service.ConversionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,91 +15,30 @@ import java.util.List;
 public class ConverterController {
 
     @Autowired
-    private ConversionRepository conversionRepository;
+    private ConversionService conversionService;
 
     @GetMapping("/ctok")
-    /*public String ctok(@RequestParam String celsius){
-        double c = (Double.valueOf(celsius)).doubleValue();
-        double k = c + 273.15;
-        String kelvin = String.valueOf(k);
-        Conversion cnv = new Conversion();
-        cnv.setConversionType("Celsius To Kelvin");
-        cnv.setInputType("Celsius");
-        cnv.setInputValue(c);
-        cnv.setOutputType("Kelvin");
-        cnv.setOutputValue(k);
-        conversionRepository.save(cnv);
-        return kelvin;
-    }*/
-
-    public Double ctok(@RequestParam Double celsius){
-        Double k = celsius + 273.15;
-        Conversion cnv = new Conversion();
-        cnv.setConversionType("Celsius To Kelvin");
-        cnv.setInputType("Celsius");
-        cnv.setInputValue(celsius);
-        cnv.setOutputType("Kelvin");
-        cnv.setOutputValue(k);
-        conversionRepository.save(cnv);
-        return k;
+    public Double ctok(@RequestParam("celsius") Double celsius){
+        return conversionService.celsiusToKelvin(celsius);
     }
 
     @GetMapping("/ktoc")
-    public String ktoc(@RequestParam String kelvin){
-        double k = (Double.valueOf(kelvin)).doubleValue();
-        double c = k - 273.15;
-        String celsius = String.valueOf(c);
-        Conversion cnv = new Conversion();
-        cnv.setConversionType("Kelvin To Celsius");
-        cnv.setInputType("Kelvin");
-        cnv.setInputValue(k);
-        cnv.setOutputType("Celsius");
-        cnv.setOutputValue(c);
-        conversionRepository.save(cnv);
-        return celsius;
+    public Double ktoc(@RequestParam("kelvin") Double kelvin){
+        return conversionService.kelvinToCelsius(kelvin);
     }
 
     @GetMapping("/mtok")
-    public String mtok(@RequestParam String miles){
-        double m = (Double.valueOf(miles)).doubleValue();
-        double km = m/0.6214;
-        String kilometres = String.valueOf(km);
-        Conversion cnv = new Conversion();
-        cnv.setConversionType("Miles To Kilometres");
-        cnv.setInputType("Miles");
-        cnv.setInputValue(m);
-        cnv.setOutputType("Kilometres");
-        cnv.setOutputValue(km);
-        conversionRepository.save(cnv);
-        return kilometres;
+    public Double mtok(@RequestParam("miles") Double miles){
+        return conversionService.milesToKilometres(miles);
     }
 
     @GetMapping("/ktom")
-    public String ktom(@RequestParam String kilometres){
-        double km = (Double.valueOf(kilometres)).doubleValue();
-        double m = km * 0.6214;
-        String miles = String.valueOf(m);
-        Conversion cnv = new Conversion();
-        cnv.setConversionType("Kilometres To Miles");
-        cnv.setInputType("Kilometres");
-        cnv.setInputValue(km);
-        cnv.setOutputType("Miles");
-        cnv.setOutputValue(m);
-        conversionRepository.save(cnv);
-        return miles;
+    public Double ktom(@RequestParam("kilometres") Double kilometres){
+        return conversionService.kilometresToMiles(kilometres);
     }
-
-    /*public ResponseEntity<Conversion> setConversion(Conversion conversionEntity){
-        Conversion cnv = new Conversion();
-        cnv.setConversionType("Kilometres To Miles");
-        cnv.setInputType("Kilometres");
-        cnv.setInputValue(km);
-        cnv.setOutputType("Miles");
-        cnv.setOutputValue(m);
-    }*/
 
     @GetMapping("/history")
     public List<Conversion> getHistory(){
-        return conversionRepository.findAll();
+        return conversionService.getAllConversions();
     }
 }
