@@ -8,6 +8,6 @@ public class AngularJSWebController {
 
     @RequestMapping("/")
     public String homePage(){
-        return "index.html";
+        return "conversions.html";
     }
 }

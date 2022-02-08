@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wonderlabz Conversion Calculator</title>
+  <script src="js/angular-1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="bootstrap-4.3.1/css/bootstrap.css">
+</head>
+<body>
+
+  <!--<div>
+    <ul class="nav nav-pills" role="tablist">
+      <li>Celsius To Kelvin |</li>
+      <li>Kelvin To Celsius |</li>
+      <li>Kilometres To Miles |</li>
+      <li>Miles To Kilometres</li>
+    </ul>
+  </div>-->
+  <div ng-app="converterApp" ng-controller="converterCtrl" class="container">
+    <p>
+    <h3>Wonderlabz Conversion Application</h3>
+    </p>
+    <div class="tab">
+      <button class="tablinks" onclick="openConversionType(event, 'celsiusToKelvin')">Celsius To Kelvin</button>
+      <button class="tablinks" onclick="openConversionType(event, 'kelvinToCelsius')">Kelvin To Celsius</button>
+      <button class="tablinks" onclick="openConversionType(event, 'kilometresToMiles')">Kilometres To Miles</button>
+      <button class="tablinks" onclick="openConversionType(event, 'milesToKilometres')">Miles To Kilometres</button>
+    </div>
+
+    <div id="celsiusToKelvin" class="tabcontent">
+      <form ng-submit="submitCelsius()">
+        <div class="form-group">
+          <label id="lb-celsius">Celsius</label>
+          <input type="number" step="0.01" ng-model="celsius"><br>
+          <p>{{temperatureOutput}}</p>
+          <button type="submit">Convert</button>
+          <button type="reset">Reset</button><br>
+        </div>
+      </form>
+    </div>
+
+    <div id="kelvinToCelsius" class="tabcontent">
+      <form ng-submit="submitKelvin()">
+        <div class="form-group">
+          <label id="lb-kelvin">Kelvin</label>
+          <input type="number" step="0.01" ng-model="kelvin"><br>
+          <p>{{temperatureOutput}}</p>
+          <button type="submit">Convert</button>
+          <button type="reset">Reset</button><br>
+        </div>
+      </form>
+    </div>
+
+    <div id="kilometresToMiles" class="tabcontent">
+      <form ng-submit="submitKilometres()">
+        <div class="form-group">
+          <label id="lb-kilometres">Kilometres</label>
+          <input type="number" step="0.01" ng-model="kilometres"><br>
+          <p>{{distanceOutput}}</p>
+          <button type="submit">Convert</button>
+          <button type="reset">Reset</button><br>
+        </div>
+      </form>
+    </div>
+
+    <div id="milesToKilometres" class="tabcontent">
+      <form ng-submit="submitMiles()">
+        <div class="form-group">
+          <label id="lb-miles">Miles</label>
+          <input type="number" step="0.01" ng-model="miles"><br>
+          <p>{{distanceOutput}}</p>
+          <button type="submit">Convert</button>
+          <button type="reset">Reset</button><br>
+        </div>
+      </form>
+    </div>
+    <br>
+    <div>
+      <!--<button id="history" ng-click="getHistory()">Show Conversion History</button>-->
+      <input type="button" id="history" value="Show Conversion History" ng-click="getHistory()">
+    </div>
+
+    <!--To display conversion history-->
+    <div id="displayTable" hidden>
+      <table>
+        <tr>
+          <th>Conversion Type</th>
+          <th>Conversion Input Type</th>
+          <th>Conversion Input Value</th>
+          <th>Conversion Output Type</th>
+          <th>Conversion Output Value</th>
+        </tr>
+
+        <tr ng-repeat="conversion in conversions">
+          <td>{{conversion.conversionType}}</td>
+          <td>{{conversion.inputType}}</td>
+          <td>{{conversion.inputValue}}</td>
+          <td>{{conversion.outputType}}</td>
+          <td>{{conversion.outputValue}}</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+  <script src="js/app.js"></script>
+  <script src="js/converterController.js"></script>
+  <script src="js/app.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+</body>
+</html>
