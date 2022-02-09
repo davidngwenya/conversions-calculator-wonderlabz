@@ -8,18 +8,11 @@
 </head>
 <body>
 
-  <!--<div>
-    <ul class="nav nav-pills" role="tablist">
-      <li>Celsius To Kelvin |</li>
-      <li>Kelvin To Celsius |</li>
-      <li>Kilometres To Miles |</li>
-      <li>Miles To Kilometres</li>
-    </ul>
-  </div>-->
-  <div ng-app="converterApp" ng-controller="converterCtrl" class="container">
-    <p>
-    <h3>Wonderlabz Conversion Application</h3>
-    </p>
+  <div id="div-application" ng-app="converterApp" ng-controller="converterCtrl" class="container">
+    <div id="div-header" class="d-flex justify-content-center">
+      <h1>Wonderlabz Conversion Application</h1>
+    </div>
+
     <div class="tab">
       <button class="tablinks" onclick="openConversionType(event, 'celsiusToKelvin')">Celsius To Kelvin</button>
       <button class="tablinks" onclick="openConversionType(event, 'kelvinToCelsius')">Kelvin To Celsius</button>
@@ -27,69 +20,77 @@
       <button class="tablinks" onclick="openConversionType(event, 'milesToKilometres')">Miles To Kilometres</button>
     </div>
 
+    <!--A form to display the conversion calculator view from Celsius to Kelvin-->
     <div id="celsiusToKelvin" class="tabcontent">
-      <form ng-submit="submitCelsius()">
+      <form id="formCelsius" ng-submit="submitCelsius()">
         <div class="form-group">
-          <label id="lb-celsius">Celsius</label>
+          <label class="lb-text">Celsius</label>
           <input type="number" step="0.01" ng-model="celsius"><br>
           <p>{{temperatureOutput}}</p>
-          <button type="submit">Convert</button>
-          <button type="reset">Reset</button><br>
+          <div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Convert</button>
+            <button class="btn btn-secondary btn-lg btn-block" ng-click="resetCtoKForm()">Reset</button><br>
+          </div>
         </div>
       </form>
     </div>
 
+    <!--A form to display the conversion calculator view from Kelvin to Celsius-->
     <div id="kelvinToCelsius" class="tabcontent">
-      <form ng-submit="submitKelvin()">
+      <form id="formKelvin" ng-submit="submitKelvin()">
         <div class="form-group">
-          <label id="lb-kelvin">Kelvin</label>
+          <label class="lb-text">Kelvin</label>
           <input type="number" step="0.01" ng-model="kelvin"><br>
           <p>{{temperatureOutput}}</p>
-          <button type="submit">Convert</button>
-          <button type="reset">Reset</button><br>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Convert</button>
+          <button class="btn btn-secondary btn-lg btn-block" ng-click="resetKtoCForm()">Reset</button><br>
         </div>
       </form>
     </div>
 
+    <!--A form to display the conversion calculator view from Kilometres to Miles-->
     <div id="kilometresToMiles" class="tabcontent">
-      <form ng-submit="submitKilometres()">
+      <form id="formKilometres" ng-submit="submitKilometres()">
         <div class="form-group">
-          <label id="lb-kilometres">Kilometres</label>
+          <label class="lb-text">Kilometres</label>
           <input type="number" step="0.01" ng-model="kilometres"><br>
           <p>{{distanceOutput}}</p>
-          <button type="submit">Convert</button>
-          <button type="reset">Reset</button><br>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Convert</button>
+          <button class="btn btn-secondary btn-lg btn-block" ng-click="resetKtoMForm()">Reset</button><br>
         </div>
       </form>
     </div>
 
+    <!--A form to display the conversion calculator view from Miles to Kilometres-->
     <div id="milesToKilometres" class="tabcontent">
-      <form ng-submit="submitMiles()">
+      <form id="formMiles" ng-submit="submitMiles()">
         <div class="form-group">
-          <label id="lb-miles">Miles</label>
+          <label class="lb-text">Miles</label>
           <input type="number" step="0.01" ng-model="miles"><br>
           <p>{{distanceOutput}}</p>
-          <button type="submit">Convert</button>
-          <button type="reset">Reset</button><br>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Convert</button>
+          <button class="btn btn-secondary btn-lg btn-block" ng-click="resetMtoKForm()">Reset</button><br>
         </div>
       </form>
     </div>
     <br>
-    <div>
+    <div id="div-btn-history" class="d-flex justify-content-center">
       <!--<button id="history" ng-click="getHistory()">Show Conversion History</button>-->
-      <input type="button" id="history" value="Show Conversion History" ng-click="getHistory()">
+      <input type="button" id="history" class="btn btn-primary" value="Show Conversion History" ng-click="getHistory()">
     </div>
 
     <!--To display conversion history-->
     <div id="displayTable" hidden>
-      <table>
-        <tr>
-          <th>Conversion Type</th>
-          <th>Conversion Input Type</th>
-          <th>Conversion Input Value</th>
-          <th>Conversion Output Type</th>
-          <th>Conversion Output Value</th>
-        </tr>
+      <table class="table table-hover table-dark">
+        <thead class="thead-dark">
+          <tr>
+            <th>Conversion Type</th>
+            <th>Conversion Input Type</th>
+            <th>Conversion Input Value</th>
+            <th>Conversion Output Type</th>
+            <th>Conversion Output Value</th>
+          </tr>
+        </thead>
 
         <tr ng-repeat="conversion in conversions">
           <td>{{conversion.conversionType}}</td>

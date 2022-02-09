@@ -2,6 +2,7 @@ var app = angular.module('converterApp', []);
 
 app.controller('converterCtrl', function($scope, $http){
 
+    /*A call to the conversion service to calculate celsius to kelvin to conversion*/
     $scope.submitCelsius = function(){
        if($scope.celsius){
         $http.get("http://localhost:8080/conversions/ctok?celsius=" + $scope.celsius)
@@ -12,6 +13,7 @@ app.controller('converterCtrl', function($scope, $http){
         }
     }
 
+    /*A call to the conversion service to calculate kelvin to celsius conversion*/
     $scope.submitKelvin = function(){
            if($scope.kelvin){
             $http.get("http://localhost:8080/conversions/ktoc?kelvin=" + $scope.kelvin)
@@ -22,6 +24,7 @@ app.controller('converterCtrl', function($scope, $http){
             }
     }
 
+    /*A call to the conversion service to calculate kilometres to miles conversion*/
     $scope.submitKilometres = function(){
             if($scope.kilometres){
             $http.get("http://localhost:8080/conversions/ktom?kilometres=" + $scope.kilometres)
@@ -32,6 +35,7 @@ app.controller('converterCtrl', function($scope, $http){
             }
     }
 
+    /*A call to the conversion service to calculate miles to kilometres conversion*/
     $scope.submitMiles = function(){
            if($scope.miles){
            $http.get("http://localhost:8080/conversions/mtok?miles=" + $scope.miles)
@@ -45,6 +49,7 @@ app.controller('converterCtrl', function($scope, $http){
 
     $scope.conversions = [];
 
+    /*Function to get total history of conversions made*/
     $scope.getHistory = function(){
         $http.get("http://localhost:8080/conversions/history")
             .then(function (response){
@@ -62,29 +67,29 @@ app.controller('converterCtrl', function($scope, $http){
         }
     }
 
-    function success(response){
-        clearTempForm();
-        clearDistForm();
-    }
-
-    function error(response){
-        console.log(response.statusText);
-    }
-
-    function clearTempForm(){
+    /*Function to reset celsius to kelvin conversions*/
+    $scope.resetCtoKForm = function(){
         $scope.celsius = "";
+        $scope.temperatureOutput="";
+    }
+
+    /*Function to reset kelvin to celsius conversions*/
+    $scope.resetKtoCForm = function(){
         $scope.kelvin = "";
+        $scope.temperatureOutput="";
     }
 
-    function clearDistForm(){
+    /*Function to reset miles to kilometres conversions*/
+    $scope.resetMtoKForm = function(){
         $scope.miles = "";
-        $scope.kilometres = "";
+        $scope.distanceOutput="";
     }
 
-    /*function refreshPageData(){
-        $http.get("http://localhost:8080/");
-    }*/
-
+    /*Function to reset kilometres to miles conversions*/
+    $scope.resetKtoMForm = function(){
+        $scope.kilometres = "";
+        $scope.distanceOutput="";
+    }
 
 });
 

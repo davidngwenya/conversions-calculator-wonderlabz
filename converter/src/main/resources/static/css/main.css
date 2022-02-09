@@ -2,11 +2,14 @@
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #2bb144;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
+  /*width:33.33%;*/
   background-color: inherit;
   float: left;
   border: none;
@@ -16,7 +19,7 @@
   transition: 0.3s;
 }
 
-/* Change background color of buttons on hover */
+/* Changing background color of buttons on hover */
 .tab button:hover {
   background-color: #ddd;
 }
@@ -32,4 +35,33 @@
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+}
+
+/*Style the reset buttons*//*
+
+.reset{
+    width: 90px;
+    margin-left:100px;
+}*/
+
+/*Style the App heading*/
+#div-header{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/*style conversion history button*/
+#div-btn-history{
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+/*Style text labels*/
+.lb-text{
+    font-weight: bold;
+}
+
+/*Style the Application background*/
+#div-application{
+    background: cream;
 }

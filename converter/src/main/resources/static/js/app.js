@@ -1,7 +1,5 @@
-/*
-//var app = angular.module('converterApp', ['ngRoute','ngResource']);
-var app = angular.module('converterApp', []);*/
 function openConversionType(evt, conversionType) {
+
   // Declare all variables
   var i, tabcontent, tablinks;
 

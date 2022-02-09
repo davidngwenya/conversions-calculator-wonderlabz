@@ -17,6 +17,7 @@ public class ConversionService {
         this.conversionRepository = conversionRepository;
     }
 
+    /*A method which calculates a Celsius to Kelvin conversion*/
     public Double celsiusToKelvin(Double celsius){
         Double kelvin = celsius + 273.15;
         Double roundVal = Math.round(kelvin * 100.0)/100.0;
@@ -30,6 +31,7 @@ public class ConversionService {
         return cnv.getOutputValue();
     }
 
+    /*A method which calculates a Kelvin to Celsius conversion*/
     public Double kelvinToCelsius(Double kelvin){
         Double celsius = kelvin - 273.15;
         Double roundVal = Math.round(celsius * 100.0)/100.0;
@@ -43,6 +45,7 @@ public class ConversionService {
         return cnv.getOutputValue();
     }
 
+    /*A method which calculates a Miles to Kilometre conversion*/
     public Double milesToKilometres(Double miles){
         Double kilometres = miles/0.6214;
         Double roundVal = Math.round(kilometres * 100.0)/100.0;
@@ -56,6 +59,7 @@ public class ConversionService {
         return cnv.getOutputValue();
     }
 
+    /*A method which calculates a Kilometres to Miles conversion*/
     public Double kilometresToMiles(Double kilometres){
         Double miles = kilometres * 0.6214;
         Double roundVal = Math.round(miles * 100.0)/100.0;
@@ -69,6 +73,7 @@ public class ConversionService {
         return cnv.getOutputValue();
     }
 
+    /*A method which gets a full list of all conversions calculated*/
     public List<Conversion> getAllConversions(){
         return conversionRepository.findAll();
     }
